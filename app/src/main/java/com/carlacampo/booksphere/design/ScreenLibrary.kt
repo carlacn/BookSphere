@@ -25,15 +25,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.carlacampo.booksphere.data.Book
 import com.carlacampo.booksphere.model.Routes
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 
 
 @Composable
-fun ScreenLibrary(navController: NavHostController, screenLibraryViewModel: ScreenLibraryViewModel) {
+fun ScreenLibrary(navController: NavHostController, screenLibraryViewModel: ScreenLibraryViewModel = hiltViewModel()) {
 
     val books by screenLibraryViewModel.book.observeAsState(listOf())
 

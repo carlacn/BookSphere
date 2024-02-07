@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.carlacampo.booksphere.data.Book
 import com.carlacampo.booksphere.R
+import dagger.hilt.android.lifecycle.HiltViewModel
 
+@HiltViewModel
 class ScreenLibraryViewModel: ViewModel(){
 
     //set, que es mutable y se puede modificar
