@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val screenLibraryViewModel: ScreenLibraryViewModel by viewModels()
-        //una variable por cada view model que tenga y se llaman todos en este main
+        //A variable for each view model you have and they are all called in this main.
 
         val dbHelper = BooksDBHelper (this)
         val writableDB = dbHelper.readableDatabase
@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                 VALUES("El Silmarillion", "J. R. R. Tolkien", 1901, "Booket", 448)
             """.trimIndent()
         )
-        */
+
 
         val values = ContentValues().apply {
             put(BookDBScheme.COLUMN_NAME, "El Hobbit")
@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
             put(BookDBScheme.COLUMN_PAGES, 288)
         }
         writableDB.insert(BookDBScheme.TABLE_NAME, null, values)
-
+   */
         super.onCreate(savedInstanceState)
         setContent {
             BookSphereTheme {

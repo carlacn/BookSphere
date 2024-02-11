@@ -22,24 +22,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.carlacampo.booksphere.R
 import com.carlacampo.booksphere.data.Book
 import com.carlacampo.booksphere.model.Routes
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.StateFlow
 
-
-
+//Separate Screen from content
 @Composable
 fun ScreenLibrary(navController: NavHostController, screenLibraryViewModel: ScreenLibraryViewModel = hiltViewModel()) {
 
-    val books by screenLibraryViewModel.book.observeAsState(listOf())
+    val booksState: StateFlow<List<Book>> = screenLibraryViewModel.books
+    val books by booksState.collectAsState()
 
-    Box(
+    ScreenLibraryContent(navController, books)
+}
+
+//Content composable. Called in ScreenLibrary.
+@Composable
+fun ScreenLibraryContent(navController: NavHostController, books: List<Book>) {
+
+Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(android.graphics.Color.parseColor("#F4F4F4")))
@@ -72,22 +82,27 @@ fun ScreenLibrary(navController: NavHostController, screenLibraryViewModel: Scre
                     )
                 }
         )
-
+    Text(
+        text = stringResource(R.string.library),
+        fontSize = 24.sp,
+        modifier = Modifier
+            .padding(start = 32.dp, top = 32.dp)
+            .align(Alignment.TopStart)
+    )
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 56.dp)
+                .padding(top = 72.dp)
                 .padding(start = 48.dp)
         ) {
             items(books) { book ->
                 BookItem(book = book)
             }
         }
-
     }
 }
 
-
+//Show books.
 @Composable
 fun BookItem(book: Book) {
     Box(
@@ -123,7 +138,7 @@ fun BookItem(book: Book) {
 }
 
 
-
+//Preview composable.
 @Composable
 @Preview
 fun ScreenLibraryPreview() {
