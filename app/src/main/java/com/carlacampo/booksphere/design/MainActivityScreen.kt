@@ -12,7 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBackIos
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -73,6 +78,18 @@ fun MainActivityContent(navController: NavHostController) {
                     ) { ButtonsSecondRow(navController, {navController.navigate(Routes.ScreenDesired.route)}, {navController.navigate(Routes.ScreenStats.route)}) }
                 }
                 LazyColumnMain()
+                FloatingActionButton(
+                    onClick = { navController.navigate(Routes.ScreenAddBook.route) },
+                    modifier = Modifier
+                        .padding(bottom = 48.dp, end = 24.dp )
+                        .size(56.dp)
+                        .align(Alignment.BottomEnd)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Add Book"
+                    )
+                }
             }
         },
         bottomBar = { BookSphereBottomBar() }

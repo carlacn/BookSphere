@@ -17,5 +17,6 @@
 
     //Addition
     <string name="add">+ Add</string>
+    <string name="addBook">Add Book</string>
 
 </resources>

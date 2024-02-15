@@ -1,19 +1,17 @@
 package com.carlacampo.booksphere.design
 
-import android.content.ContentValues
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.carlacampo.booksphere.bbdd.BookDBScheme
 import com.carlacampo.booksphere.bbdd.BooksDBHelper
+import com.carlacampo.booksphere.design.addbook.AddBookScreen
+import com.carlacampo.booksphere.design.addbook.AddBookScreenViewModel
 import com.carlacampo.booksphere.model.Routes
 import com.carlacampo.booksphere.ui.theme.BookSphereTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,13 +21,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val screenLibraryViewModel: ScreenLibraryViewModel by viewModels()
+        val screenCurrentReadViewModel: ScreenCurrentReadViewModel by viewModels()
+        val screenDesiredViewModel: ScreenDesiredViewModel by viewModels()
+        val addBookScreenViewModel: AddBookScreenViewModel by viewModels()
+
         //A variable for each view model you have and they are all called in this main.
 
-        val dbHelper = BooksDBHelper (this)
+        /*val dbHelper = BooksDBHelper(this)
         val writableDB = dbHelper.readableDatabase
-        /* writableDB.execSQL(
+         writableDB.execSQL(
             """
-                INSERT INTO ${BookDBScheme.TABLE_NAME}(
+                INSERT INTO ${BookDBScheme.TABLE_NAME}(d
                     ${BookDBScheme.COLUMN_NAME},
                     ${BookDBScheme.COLUMN_AUTHOR},
                     ${BookDBScheme.COLUMN_PUBLICATION_YEAR},
@@ -54,12 +56,39 @@ class MainActivity : ComponentActivity() {
         setContent {
             BookSphereTheme {
                 val navigationController = rememberNavController()
-                NavHost(navController = navigationController, startDestination = Routes.MainActivityContent.route){
-                    composable(Routes.MainActivityContent.route){ MainActivityContent(navigationController) }
-                    composable(Routes.ScreenLibrary.route){ ScreenLibrary(navigationController, screenLibraryViewModel = screenLibraryViewModel) }
-                    composable(Routes.ScreenCurrentRead.route){ ScreenCurrentRead(navigationController) }
-                    composable(Routes.ScreenDesired.route){ ScreenDesired(navigationController) }
-                    composable(Routes.ScreenStats.route){ ScreenStats(navigationController) }
+                NavHost(
+                    navController = navigationController,
+                    startDestination = Routes.MainActivityContent.route
+                ) {
+                    composable(Routes.MainActivityContent.route) {
+                        MainActivityContent(
+                            navigationController
+                        )
+                    }
+                    composable(Routes.ScreenLibrary.route) {
+                        ScreenLibrary(
+                            navigationController,
+                            screenLibraryViewModel = screenLibraryViewModel
+                        )
+                    }
+                    composable(Routes.ScreenCurrentRead.route) {
+                        ScreenCurrentRead(
+                            navigationController,
+                            screenCurrentReadViewModel = screenCurrentReadViewModel
+                        )
+                    }
+                    composable(Routes.ScreenDesired.route) {
+                        ScreenDesired(
+                            navigationController,
+                            screenDesiredViewModel = screenDesiredViewModel
+                        )
+                    }
+                    composable(Routes.ScreenStats.route) { ScreenStats(navigationController) }
+                    composable(Routes.ScreenAddBook.route) {
+                        AddBookScreen(
+                            navigationController
+                        )
+                    }
                 }
             }
         }
@@ -69,5 +98,5 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewMainScreen() {
-        MainActivityContent(navController = rememberNavController())
+    MainActivityContent(navController = rememberNavController())
 }

@@ -7,4 +7,5 @@ sealed class Routes(val route:String) {
     object ScreenCurrentRead:Routes("ScreenCurrentRead")
     object ScreenDesired:Routes("ScreenDesired")
     object ScreenStats:Routes("ScreenStats")
+    object ScreenAddBook:Routes("ScreenAddBok")
 }
