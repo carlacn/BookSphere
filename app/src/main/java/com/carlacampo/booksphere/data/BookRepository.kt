@@ -15,14 +15,16 @@ class BookRepository @Inject constructor(
     fun downloadBook(): List<Book> {
         var cursor = writableDB.query(
             BookDBScheme.TABLE_NAME,
-            arrayOf(
+/*            arrayOf(
                 BaseColumns._ID,
                 BookDBScheme.COLUMN_NAME,
                 BookDBScheme.COLUMN_AUTHOR,
                 BookDBScheme.COLUMN_PUBLICATION_YEAR,
                 BookDBScheme.COLUMN_EDITORIAL,
                 BookDBScheme.COLUMN_PAGES
-            ),
+            ),*/
+            // columns null, so i can obtain all columns
+            null,
             null, null, null, null, null
         )
         val books = mutableListOf<Book>()
@@ -35,8 +37,7 @@ class BookRepository @Inject constructor(
                         author = getString(getColumnIndexOrThrow(BookDBScheme.COLUMN_AUTHOR)),
                         publicationYear = getInt(getColumnIndexOrThrow(BookDBScheme.COLUMN_PUBLICATION_YEAR)),
                         editorial = getString(getColumnIndexOrThrow(BookDBScheme.COLUMN_EDITORIAL)),
-                        pages = getInt(getColumnIndexOrThrow(BookDBScheme.COLUMN_PAGES)),
-                        image = getInt(getColumnIndexOrThrow(BookDBScheme.COLUMN_PAGES))
+                        pages = getInt(getColumnIndexOrThrow(BookDBScheme.COLUMN_PAGES))
                     ))
             }
         }

@@ -110,14 +110,14 @@ fun BookItem(book: Book) {
             .padding(bottom = 8.dp)
 
     ) {
-        Image(
+        /*Image(
             painter = painterResource(id = book.image),
             contentDescription = null,
             modifier = Modifier
                 .size(136.dp)
                 .clip(shape = RoundedCornerShape(8.dp))
                 .align(Alignment.CenterStart)
-        )
+        )*/
         Text(
             text = book.title,
             fontSize = 16.sp,

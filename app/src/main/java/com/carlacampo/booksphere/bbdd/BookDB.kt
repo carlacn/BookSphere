@@ -14,7 +14,7 @@ object BookDBScheme : BaseColumns {
 
     const val SQL_CREATE_ENTRIES = """
         CREATE TABLE ${BookDBScheme.TABLE_NAME}(
-            ${BookDBScheme.COLUMN_NAME} INTEGER PRIMARY KEY AUTOINCREMENT,
+            ${BookDBScheme.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
             ${BookDBScheme.COLUMN_NAME} TEXT,
             ${BookDBScheme.COLUMN_AUTHOR} TEXT,
             ${BookDBScheme.COLUMN_PUBLICATION_YEAR} INT,

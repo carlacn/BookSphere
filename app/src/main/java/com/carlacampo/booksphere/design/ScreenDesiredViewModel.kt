@@ -23,8 +23,8 @@ class ScreenDesiredViewModel @Inject constructor(): ViewModel(){
 }
 private fun getDesiredBooksInfo(): List<Book> {
     return listOf(
-        Book("Harry Potter y la Piedra Filosofal", "J. k. Rowling", 2020, "Minalima", 368, R.drawable.hp_piedra_filosofal),
-        Book("Harry Potter y la Cámara Secreta", "J. k. Rowling", 2021, "Minalima", 400, R.drawable.hp_camara_secreta),
-        Book("Harry Potter y el Prisionero de Azkaban", "J. k. Rowling", 2023, "Minalima", 480, R.drawable.hp_prisionero_azkaban)
+        Book("Harry Potter y la Piedra Filosofal", "J. k. Rowling", 2020, "Minalima", 368),
+        Book("Harry Potter y la Cámara Secreta", "J. k. Rowling", 2021, "Minalima", 400),
+        Book("Harry Potter y el Prisionero de Azkaban", "J. k. Rowling", 2023, "Minalima", 480)
     )
 }

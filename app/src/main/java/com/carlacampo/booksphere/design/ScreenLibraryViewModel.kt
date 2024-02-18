@@ -30,9 +30,9 @@ class ScreenLibraryViewModel @Inject constructor(): ViewModel(){
     //List to define the books.
     private fun getBooksInfo(): List<Book> {
         return listOf(
-            Book("La Comunidad del Anillo", "J. R. R. Tolkien", 2022, "Minotauro", 488, R.drawable.la_comunidad_del_anillo),
-            Book("Las Dos Torres", "J. R. R. Tolkien", 2022, "Minotauro", 408, R.drawable.las_dos_torres),
-            Book("El Retorno del Rey", "J. R. R. Tolkien", 2022, "Minotauro", 520, R.drawable.el_retorno_del_rey)
+            Book("La Comunidad del Anillo", "J. R. R. Tolkien", 2022, "Minotauro", 488),
+            Book("Las Dos Torres", "J. R. R. Tolkien", 2022, "Minotauro", 408),
+            Book("El Retorno del Rey", "J. R. R. Tolkien", 2022, "Minotauro", 520)
         )
     }
 
