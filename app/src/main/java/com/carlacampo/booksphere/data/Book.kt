@@ -13,7 +13,6 @@ data class Book(
     )
 
     fun Book.toEntity() = BookEntity (
-        id = 0,
         title = title,
         author = author,
         publicationYear = publicationYear,

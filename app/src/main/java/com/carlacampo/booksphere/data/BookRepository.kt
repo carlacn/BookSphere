@@ -30,7 +30,6 @@ class BookRepository @Inject constructor(
         val books = mutableListOf<Book>()
         with(cursor){
             while(moveToNext()){
-                val itemId = getLong(getColumnIndexOrThrow(BaseColumns._ID))
                 books.add(
                     Book(
                         title = getString(getColumnIndexOrThrow(BookDBScheme.COLUMN_NAME)),

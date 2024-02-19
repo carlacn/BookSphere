@@ -39,9 +39,13 @@ fun AddBookScreen(
     navController: NavHostController,
     addBookScreenViewModel: AddBookScreenViewModel = hiltViewModel()
 ) {
-    val state by addBookScreenViewModel.state.collectAsState()
+    val combinedState = addBookScreenViewModel.combinedState.collectAsState().value
+    val state = combinedState.first
+    val roomState = combinedState.second
+
     AddBookContent(
-        state,
+        state = combinedState.first,
+        roomState = combinedState.second,
         addBook = { book ->
             addBookScreenViewModel.saveBook(book)
         },
@@ -56,11 +60,12 @@ fun AddBookScreen(
 @Composable
 fun AddBookContent(
     state: List<Book> = emptyList(),
+    roomState: List<Book> = emptyList(),
     addBook: (Book) -> Unit = {},
-    roomBooks: List<Book> = emptyList(),
     navController: NavHostController,
     addbookRoom: (Book) -> Unit = {}
 ) {
+
     val book = Book(
         "Loba Negra 2", "Juan Gómez-Jurado", 2020, "PRH Grupo Editorial", 522
     )
@@ -122,7 +127,7 @@ fun AddBookContent(
                 .padding(
                     top = 128.dp,
                     start = 8.dp
-                ) // Puedes ajustar el valor según tus necesidades
+                )
         ) {
             items(state) { book ->
                 BookItem(book)
@@ -153,7 +158,7 @@ fun AddBookContent(
                 modifier = Modifier
                     .padding(top = 128.dp, start = 8.dp)
             ) {
-                items(roomBooks) { roomBook ->
+                items(roomState) { roomBook ->
                     BookItemRoom(roomBook)
                 }
             }

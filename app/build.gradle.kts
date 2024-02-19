@@ -99,6 +99,9 @@ dependencies {
     // To use Kotlin Symbol Processing (KSP)
     //ksp("androidx.room:room-compiler:$room_version")
 
+    //To use Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

@@ -7,7 +7,7 @@ import com.carlacampo.booksphere.data.Book
 
 @Entity
 data class BookEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "author") val author: String,
     @ColumnInfo(name = "publicationYear") val publicationYear: Int,

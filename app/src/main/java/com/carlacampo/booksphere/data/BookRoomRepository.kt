@@ -17,6 +17,9 @@ class BookRoomRepository @Inject constructor(
         return books
     }
 
-    fun saveBook(book: Book) = bookDao.insertAll(book.toEntity())
+    suspend fun saveBook(book: Book) {
+        Log.d("BookRoomRepository", "saveBook: $book")
+        bookDao.insertAll(book.toEntity())
+    }
 
 }
