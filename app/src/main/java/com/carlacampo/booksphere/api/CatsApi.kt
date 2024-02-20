@@ -1,6 +1,9 @@
 package com.carlacampo.booksphere.api
-/*
+
+import kotlinx.serialization.Serializable
+import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface CatsApi {
     /*
@@ -15,9 +18,14 @@ interface CatsApi {
 	}
      */
 
-    @GET("/users/{user}/repos")
-    suspend fun getCatsFact(): FactResponse
+    @GET("/facts/random")
+    //suspend
+    fun getCatsFact(@Query("animal_type")type:String = "cat", @Query("amount")amount:Int = 1 ): Call<CatFactResponse>
 
 }
 
-*/
+@Serializable
+data class CatFactResponse (
+    val text: String,
+)
+

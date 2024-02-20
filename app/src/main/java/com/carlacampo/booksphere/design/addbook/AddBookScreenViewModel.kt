@@ -1,13 +1,7 @@
 package com.carlacampo.booksphere.design.addbook
 
-import android.content.ContentValues
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carlacampo.booksphere.bbdd.BookDBScheme
-import com.carlacampo.booksphere.bbdd.BooksDBHelper
 import com.carlacampo.booksphere.data.Book
 import com.carlacampo.booksphere.data.BookRepository
 import com.carlacampo.booksphere.data.BookRoomRepository
@@ -36,11 +30,19 @@ class AddBookScreenViewModel @Inject constructor(
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), Pair(emptyList(), emptyList()))
 
 
-    init {
+    /*init {
         viewModelScope.launch(context = Dispatchers.IO) {
             _state.value = repository.downloadBook()
         }
+    }*/
+
+    //API
+    init {
+        viewModelScope.launch{
+            roomRepository.getCatsFact()
+        }
     }
+
 
     fun saveBook(book: Book) {
         viewModelScope.launch(context = Dispatchers.IO)  {
