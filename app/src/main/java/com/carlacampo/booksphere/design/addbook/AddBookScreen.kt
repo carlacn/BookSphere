@@ -17,9 +17,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -31,8 +30,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.carlacampo.booksphere.R
 import com.carlacampo.booksphere.data.Book
-import com.carlacampo.booksphere.data.BookRepository
 import com.carlacampo.booksphere.model.Routes
+import com.carlacampo.booksphere.ui.theme.BookSphereTheme
+
 
 @Composable
 fun AddBookScreen(
@@ -180,4 +180,11 @@ fun BookItemRoom(book: Book) {
     }
 }
 
+@Preview
+@Composable
+fun AddBookScreenPreview(){
+    BookSphereTheme {
+        AddBookContent(navController = rememberNavController())
+    }
+}
 

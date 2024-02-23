@@ -1,5 +1,6 @@
 package com.carlacampo.booksphere.design.addbook
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlacampo.booksphere.data.Book
@@ -23,6 +24,7 @@ class AddBookScreenViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state: MutableStateFlow<List<Book>> = MutableStateFlow(emptyList())
     private val _roomState: MutableStateFlow<List<Book>> = MutableStateFlow(emptyList())
+    private val _dataStoreState = MutableStateFlow<Int>(0)
 
     //val state: StateFlow<List<Book>> = _state
     val combinedState: StateFlow<Pair<List<Book>, List<Book>>> = _state.combine(_roomState) { books, roomBooks ->
@@ -40,6 +42,10 @@ class AddBookScreenViewModel @Inject constructor(
     init {
         viewModelScope.launch{
             roomRepository.getCatsFact()
+            val bookDataStore = roomRepository.getBooksDataStore()
+            bookDataStore.collect{
+                Log.d("AddBookViewModel", "init: $it")
+            }
         }
     }
 
